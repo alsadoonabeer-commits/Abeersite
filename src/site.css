@@ -1,0 +1,357 @@
+@font-face {
+  font-family: "Poppins";
+  src: url("/assets/fonts/poppins-300-latin.woff2") format("woff2");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("/assets/fonts/poppins-400-latin.woff2") format("woff2");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("/assets/fonts/poppins-500-latin.woff2") format("woff2");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("/assets/fonts/poppins-600-latin.woff2") format("woff2");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("/assets/fonts/poppins-700-latin.woff2") format("woff2");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 700;
+}
+
+:root {
+  --font-primary: "Poppins", sans-serif;
+  --font-secondary: "Poppins", sans-serif;
+}
+
+html {
+  scroll-padding-top: 90px;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+body.mobile-menu-open {
+  overflow: hidden;
+}
+
+.rn-header {
+  position: relative;
+  z-index: 999;
+}
+
+.rn-header.sticky {
+  position: fixed;
+  inset: 0 0 auto;
+  animation: headerSlideDown 0.45s ease both;
+}
+
+.rn-header.sticky .header-wrapper {
+  background: rgba(236, 240, 243, 0.92);
+  box-shadow: 0 10px 30px rgba(31, 38, 49, 0.08);
+  backdrop-filter: blur(14px);
+}
+
+.header-left .logo a,
+.popup-mobile-menu .logo {
+  color: var(--color-heading-wv);
+  font-family: var(--font-primary);
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.4px;
+  white-space: nowrap;
+}
+
+.header-left .logo a:hover,
+.popup-mobile-menu .logo:hover {
+  color: var(--color-primary);
+  background: transparent;
+  box-shadow: none;
+}
+
+.mainmenu-nav .primary-menu a {
+  letter-spacing: 0.4px;
+}
+
+.site-icon {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+}
+
+.header-wrapper .site-icon,
+.popup-mobile-menu .site-icon {
+  width: 22px;
+  height: 22px;
+}
+
+.rn-service .site-icon {
+  width: 50px;
+  height: 50px;
+}
+
+.slide .skill-share-inner .skill-share li,
+.slide .social-share-inner-left .social-share li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slide .skill-share-inner .skill-share li a,
+.slide .social-share-inner-left .social-share li a {
+  width: 60px;
+  height: 60px;
+}
+
+.slide .skill-share-inner .skill-share li img,
+.slide .social-share-inner-left .social-share li img {
+  width: auto;
+  max-width: 48px;
+  max-height: 30px;
+  object-fit: contain;
+  padding: 0 6px;
+}
+
+.slide .skill-share-inner .skill-share li svg,
+.slide .social-share-inner-left .social-share li svg {
+  width: 24px;
+  height: 24px;
+}
+
+.elementor-element-fb14c8c {
+  overflow: hidden;
+}
+
+.elementor-element-fb14c8c > .elementor-container {
+  align-items: center;
+}
+
+.cd-words-wrapper {
+  min-height: 1.15em;
+}
+
+.cd-words-wrapper b {
+  transition: opacity 180ms ease;
+}
+
+.divider-separator {
+  background: #dce1e4;
+}
+
+.rn-service {
+  height: 100%;
+}
+
+.rn-service .inner {
+  min-height: 305px;
+}
+
+.rn-service .inner .content .description {
+  margin-bottom: 0;
+}
+
+.rn-nav-content > .tab-pane {
+  width: 100%;
+}
+
+.rn-nav-content > .tab-pane:not(.active) {
+  display: none;
+}
+
+.rn-nav-content > .tab-pane.active {
+  display: block;
+}
+
+.testimonial[hidden] {
+  display: none !important;
+}
+
+.testimonial:not([hidden]) {
+  animation: testimonialIn 360ms ease both;
+}
+
+.testimonial-activation button.slide-arrow {
+  display: grid;
+  place-items: center;
+}
+
+.testimonial-activation button.slide-arrow svg {
+  position: relative;
+  z-index: 1;
+  width: 24px;
+  height: 24px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2;
+}
+
+.testimonial-activation button.next-arrow {
+  right: 25px;
+}
+
+.testimonial-activation .slick-dots {
+  margin: 0;
+  padding: 0;
+}
+
+.testimonial-activation .slick-dots li {
+  list-style: none;
+}
+
+.testimonial .inner .card-description::after {
+  background-image: none;
+  color: #d0d5da;
+  content: "“";
+  font-family: Georgia, serif;
+  font-size: 170px;
+  font-weight: 700;
+  line-height: 1;
+  opacity: 0.7;
+}
+
+.popup-mobile-menu .menu-top p.description {
+  display: none;
+}
+
+.backto-top {
+  cursor: pointer;
+}
+
+.backto-top .site-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.motion-ready [data-aos] {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity 500ms ease,
+    transform 500ms ease;
+}
+
+.motion-ready [data-aos].is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes testimonialIn {
+  from {
+    opacity: 0;
+    transform: translateX(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@media only screen and (max-width: 1199px) {
+  .elementor-element-fb14c8c > .elementor-container {
+    flex-direction: column;
+  }
+
+  .elementor-element-fb14c8c .elementor-column {
+    width: 100%;
+  }
+
+  .elementor-element-fb14c8c .elementor-element-e2cc555 {
+    max-width: 520px;
+    align-self: center;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .header-left .logo a,
+  .popup-mobile-menu .logo {
+    font-size: 17px;
+  }
+
+  .elementor-element-fb14c8c {
+    padding-top: 10px !important;
+  }
+
+  .slide .thumbnail .inner img {
+    max-height: 430px;
+    object-fit: contain;
+  }
+
+  .slide .content .inner .description {
+    font-size: 15px;
+    line-height: 28px;
+  }
+
+  .rn-service .inner {
+    min-height: 0;
+  }
+
+  .rn-nav-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .rn-nav-list .nav-item {
+    min-width: 0;
+  }
+
+  .testimonial .inner .card-info {
+    align-items: center;
+  }
+
+  .testimonial .inner .card-description {
+    margin-top: 0;
+  }
+}
+
+@media only screen and (max-width: 479px) {
+  .rn-nav-list {
+    grid-template-columns: 1fr;
+  }
+
+  .testimonial .inner .card-info {
+    align-items: flex-start;
+    display: block;
+  }
+
+  .testimonial .inner .card-info .card-thumbnail {
+    margin: 0 0 20px;
+    max-width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
