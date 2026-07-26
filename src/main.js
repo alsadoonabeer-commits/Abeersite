@@ -193,6 +193,8 @@ const setupTestimonials = () => {
 
   let activeIndex = 0;
   let autoAdvance;
+  let activeAnimation;
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
   const previousButton = document.createElement("button");
   previousButton.className = "slide-arrow prev-arrow";
@@ -217,24 +219,49 @@ const setupTestimonials = () => {
     const button = document.createElement("button");
     button.type = "button";
     button.setAttribute("aria-label", `Show recommendation ${index + 1}`);
-    button.addEventListener("click", () => show(index));
+    button.addEventListener("click", (event) =>
+      show(index, { animate: event.detail !== 0 }),
+    );
     item.append(button);
     dots.append(item);
     return button;
   });
 
-  const show = (index) => {
+  const show = (index, { animate = true } = {}) => {
     activeIndex = (index + slides.length) % slides.length;
+    let activeSlide;
     slides.forEach((slide, slideIndex) => {
       const active = slideIndex === activeIndex;
       slide.hidden = !active;
       slide.setAttribute("aria-hidden", String(!active));
+      if (active) activeSlide = slide;
     });
     dotButtons.forEach((button, dotIndex) => {
       const selected = dotIndex === activeIndex;
       button.parentElement.classList.toggle("slick-active", selected);
       button.setAttribute("aria-current", selected ? "true" : "false");
     });
+    activeAnimation?.cancel();
+    if (animate && !reduceMotion.matches && activeSlide) {
+      activeAnimation = activeSlide.animate(
+        [
+          {
+            opacity: 0,
+            filter: "blur(2px)",
+            transform: "translateX(12px)",
+          },
+          {
+            opacity: 1,
+            filter: "blur(0)",
+            transform: "translateX(0)",
+          },
+        ],
+        {
+          duration: 320,
+          easing: "cubic-bezier(0.23, 1, 0.32, 1)",
+        },
+      );
+    }
   };
 
   const restartAutoAdvance = () => {
@@ -242,19 +269,19 @@ const setupTestimonials = () => {
     autoAdvance = window.setInterval(() => show(activeIndex + 1), 7000);
   };
 
-  previousButton.addEventListener("click", () => {
-    show(activeIndex - 1);
+  previousButton.addEventListener("click", (event) => {
+    show(activeIndex - 1, { animate: event.detail !== 0 });
     restartAutoAdvance();
   });
-  nextButton.addEventListener("click", () => {
-    show(activeIndex + 1);
+  nextButton.addEventListener("click", (event) => {
+    show(activeIndex + 1, { animate: event.detail !== 0 });
     restartAutoAdvance();
   });
   carousel.addEventListener("mouseenter", () => window.clearInterval(autoAdvance));
   carousel.addEventListener("mouseleave", restartAutoAdvance);
 
   carousel.append(previousButton, nextButton, dots);
-  show(0);
+  show(0, { animate: false });
   restartAutoAdvance();
 };
 
@@ -306,6 +333,18 @@ const setupRevealMotion = () => {
     return;
   }
 
+  const revealItems = [...document.querySelectorAll("[data-aos]")];
+  revealItems.forEach((item, index) => {
+    const group = item.closest(".row, .elementor-container, .rn-nav-content");
+    const siblings = group
+      ? [...group.querySelectorAll("[data-aos]")].filter(
+          (candidate) => candidate.closest(".row, .elementor-container, .rn-nav-content") === group,
+        )
+      : [];
+    const groupIndex = siblings.indexOf(item);
+    const delayIndex = groupIndex >= 0 ? groupIndex : index % 4;
+    item.style.setProperty("--reveal-delay", `${Math.min(delayIndex * 55, 220)}ms`);
+  });
   document.body.classList.add("motion-ready");
   const observer = new IntersectionObserver(
     (entries) => {
@@ -317,7 +356,7 @@ const setupRevealMotion = () => {
     },
     { rootMargin: "0px 0px -8% 0px", threshold: 0.08 },
   );
-  document.querySelectorAll("[data-aos]").forEach((item) => observer.observe(item));
+  revealItems.forEach((item) => observer.observe(item));
 };
 
 replaceIcons();
