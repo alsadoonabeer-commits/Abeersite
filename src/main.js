@@ -366,3 +366,26 @@ setupResumeTabs();
 setupTestimonials();
 setupScrollBehavior();
 setupRevealMotion();
+
+
+const setupRecommendationsToggle = () => {
+  const section = document.querySelector("#testimonial");
+  if (!section) return;
+  const items = [...section.querySelectorAll(".testimonial")];
+  if (items.length <= 4) return;
+  items.slice(4).forEach((item) => item.classList.add("is-collapsed"));
+  const button = document.createElement("button");
+  button.type = "button";
+  button.className = "academic-btn academic-btn--primary recommendations-toggle";
+  button.textContent = "View all recommendations";
+  button.setAttribute("aria-expanded", "false");
+  button.addEventListener("click", () => {
+    const expanded = button.getAttribute("aria-expanded") === "true";
+    items.slice(4).forEach((item) => item.classList.toggle("is-collapsed", expanded));
+    button.setAttribute("aria-expanded", String(!expanded));
+    button.textContent = expanded ? "View all recommendations" : "Show fewer recommendations";
+  });
+  const container = section.querySelector(".elementor-container") || section;
+  container.appendChild(button);
+};
+document.addEventListener("DOMContentLoaded", setupRecommendationsToggle);
