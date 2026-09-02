@@ -587,3 +587,27 @@ a:focus-visible, button:focus-visible { outline: 3px solid #f6bd35; outline-offs
   .academic-section { padding: 58px 16px; }
   .conference-card { min-height: 0; }
 }
+
+
+/* Keep the recommendations control compact instead of stretching as a flex column. */
+#testimonial > .elementor-container {
+  position: relative;
+  padding-bottom: 92px;
+}
+
+#testimonial > .elementor-container > .recommendations-toggle {
+  position: absolute;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  max-width: calc(100% - 40px);
+  height: auto;
+  min-height: 48px;
+  margin: 0;
+  padding: 12px 24px;
+  white-space: normal;
+}
