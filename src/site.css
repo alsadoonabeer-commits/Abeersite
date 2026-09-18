@@ -611,3 +611,9 @@ a:focus-visible, button:focus-visible { outline: 3px solid #f6bd35; outline-offs
   padding: 12px 24px;
   white-space: normal;
 }
+
+/* Match the hero name to the orange resume button. */
+#home .slide .content .inner h1.title > span:first-child {
+  color: #f6b51e;
+}
+
