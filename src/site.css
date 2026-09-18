@@ -617,3 +617,16 @@ a:focus-visible, button:focus-visible { outline: 3px solid #f6bd35; outline-offs
   color: #f6b51e;
 }
 
+
+/* Use the orange portfolio accent consistently across text and controls. */
+:root {
+  --color-primary: #f6b51e;
+  --color-subtitle: #f6b51e;
+}
+.section-title span.subtitle,
+.rn-nav-list .nav-item .nav-link:hover,
+.rn-nav-list .nav-item .nav-link.active,
+.has-inbio-primary-color {
+  color: var(--color-primary);
+}
+
