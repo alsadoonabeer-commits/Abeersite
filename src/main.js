@@ -389,3 +389,28 @@ const setupRecommendationsToggle = () => {
   container.appendChild(button);
 };
 document.addEventListener("DOMContentLoaded", setupRecommendationsToggle);
+
+const setupAwardsToggle = () => {
+  const button = document.getElementById("awards-toggle");
+  const awards = document.getElementById("awards-by-year");
+  if (!button || !awards) return;
+
+  button.addEventListener("click", () => {
+    const expanded = button.getAttribute("aria-expanded") === "true";
+    button.setAttribute("aria-expanded", String(!expanded));
+    awards.hidden = expanded;
+    awards.style.display = expanded ? "none" : "";
+    button.innerHTML = expanded
+      ? 'Explore awards by year <span aria-hidden="true">↓</span>'
+      : 'Hide awards by year <span aria-hidden="true">↑</span>';
+    if (!expanded) {
+      awards.scrollIntoView({
+        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+          ? "instant"
+          : "smooth",
+        block: "start",
+      });
+    }
+  });
+};
+setupAwardsToggle();
