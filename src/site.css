@@ -558,7 +558,7 @@ section[id] { scroll-margin-top: 96px; }
 .academic-section:nth-of-type(even) { background: #fff; }
 .academic-container { width: min(1180px, 100%); margin: 0 auto; }
 .academic-section-heading { max-width: 760px; margin-bottom: 34px; }
-.academic-kicker { display: block; margin-bottom: 10px; color: var(--color-primary); font-size: 13px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+.academic-kicker { display: block; margin-bottom: 10px; color: #a66c00; font-size: 13px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
 .academic-section h2 { margin: 0 0 14px; color: var(--color-heading-wv); font-size: clamp(32px, 4vw, 48px); line-height: 1.12; }
 .academic-section p { color: var(--color-body-white); font-size: 17px; line-height: 1.75; }
 .conference-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 22px; }
