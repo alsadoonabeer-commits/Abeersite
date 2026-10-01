@@ -288,14 +288,35 @@ const setupTestimonials = () => {
 const setupScrollBehavior = () => {
   const header = document.querySelector(".rn-header");
   const backToTop = document.querySelector(".backto-top");
+  const navigationLinks = [...document.querySelectorAll('.primary-menu a[href^="#"]')];
+  // Use document order: the menu order need not match the section layout.
+  const sections = [...document.querySelectorAll("main section[id]")].filter(
+    (section) => navigationLinks.some((link) => link.hash === `#${section.id}`),
+  );
+  let currentSection;
 
   const onScroll = () => {
     const scrolled = window.scrollY > 120;
     header?.classList.toggle("sticky", scrolled);
     backToTop?.classList.toggle("show", window.scrollY > 500);
+    const marker = (header?.getBoundingClientRect().height || 90) + 96;
+    const atBottom = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2;
+    const current = atBottom ? sections.at(-1) : sections.findLast(
+      (section) => section.getBoundingClientRect().top <= marker,
+    ) || sections[0];
+    if (current && current !== currentSection) {
+      currentSection = current;
+      navigationLinks.forEach((link) => {
+        const active = link.hash === `#${current.id}`;
+        link.classList.toggle("active", active);
+        if (active) link.setAttribute("aria-current", "location");
+        else link.removeAttribute("aria-current");
+      });
+    }
   };
 
   window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onScroll, { passive: true });
   onScroll();
 
   backToTop?.setAttribute("role", "button");
