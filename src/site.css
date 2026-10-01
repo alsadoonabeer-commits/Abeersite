@@ -44,7 +44,7 @@
   --color-body: #333333;
   --color-body-white: #333333;
   --color-muted: #666666;
-  --color-primary: #8B5E34;
+  --color-primary: #FCBE2B;
   --color-subtitle: var(--color-primary);
   --font-primary: "Poppins", sans-serif;
   --font-secondary: "Poppins", sans-serif;
@@ -553,7 +553,7 @@ section[id] { scroll-margin-top: 96px; }
 .academic-btn:hover, .academic-btn:focus-visible { color: var(--color-heading-wv); transform: translateY(-2px); border-color: #f0ad18; }
 .academic-btn--primary,
 .academic-btn--primary:hover,
-.academic-btn--primary:focus-visible { background: var(--color-primary); border-color: var(--color-primary); color: var(--color-white); }
+.academic-btn--primary:focus-visible { background: var(--color-primary); border-color: var(--color-primary); color: var(--color-heading-wv); }
 .academic-section { padding: 90px 24px; background: #f7f9fc; }
 .academic-section:nth-of-type(even) { background: #fff; }
 .academic-container { width: min(1180px, 100%); margin: 0 auto; }
