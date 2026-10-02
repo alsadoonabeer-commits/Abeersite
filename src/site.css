@@ -710,3 +710,8 @@ body.white-version .personal-experience-inner .experience-list .resume-single-li
 /* Readable selected tabs and date badges on light surfaces. */
 body.white-version .rn-resume-area .rn-nav-list .nav-item .nav-link:is(.active, :hover, :focus-visible) { color: var(--color-heading-wv); box-shadow: inset 0 -3px 0 var(--color-primary); }
 body.white-version .personal-experience-inner .experience-list .resume-single-list .inner .heading .date-of-time span { color: var(--color-accent-text); }
+
+/* Let longer rotating credentials wrap without shifting the content below. */
+#home .cd-headline.clip .cd-words-wrapper { display: inline-grid; max-width: 100%; vertical-align: top; padding-right: 8px; }
+#home .cd-headline.clip .cd-words-wrapper b { position: relative; inset: auto; grid-area: 1 / 1; white-space: normal; overflow-wrap: normal; visibility: hidden; }
+#home .cd-headline.clip .cd-words-wrapper b.is-visible { visibility: visible; }
