@@ -45,7 +45,8 @@
   --color-body-white: #333333;
   --color-muted: #666666;
   --color-primary: #FCBE2B;
-  --color-subtitle: var(--color-primary);
+  --color-accent-text: #805300;
+  --color-subtitle: var(--color-accent-text);
   --font-primary: "Poppins", sans-serif;
   --font-secondary: "Poppins", sans-serif;
   --motion-out: cubic-bezier(0.23, 1, 0.32, 1);
@@ -543,6 +544,11 @@ section[id] { scroll-margin-top: 96px; }
   padding: 12px 18px; border-radius: 8px; background: #111827; color: #fff;
 }
 .skip-link:focus { top: 16px; color: #fff; }
+#home .content .inner .title { font-size: clamp(38px, 4.5vw, 60px); line-height: 1.18; letter-spacing: -.035em; }
+#home .content .inner .title .header-caption { display: block; margin-top: 14px; font-size: clamp(22px, 2.4vw, 30px); line-height: 1.4; letter-spacing: -.015em; }
+#home .content .inner .title .header-caption .cd-headline { font-size: inherit; line-height: inherit; }
+#home .content .inner .description { margin-bottom: 14px; padding-right: 0; max-width: 68ch; }
+#home .content .inner > .subtitle { color: var(--color-accent-text); letter-spacing: .12em; line-height: 1.8; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
 .academic-btn {
   display: inline-flex; align-items: center; justify-content: center;
@@ -558,7 +564,7 @@ section[id] { scroll-margin-top: 96px; }
 .academic-section:nth-of-type(even) { background: #fff; }
 .academic-container { width: min(1180px, 100%); margin: 0 auto; }
 .academic-section-heading { max-width: 760px; margin-bottom: 34px; }
-.academic-kicker { display: block; margin-bottom: 10px; color: #a66c00; font-size: 13px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+.academic-kicker { display: block; margin-bottom: 10px; color: var(--color-accent-text); font-size: 13px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
 .academic-section h2 { margin: 0 0 14px; color: var(--color-heading-wv); font-size: clamp(32px, 4vw, 48px); line-height: 1.12; }
 .academic-section p { color: var(--color-body-white); font-size: 17px; line-height: 1.75; }
 .conference-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 22px; }
@@ -572,7 +578,7 @@ section[id] { scroll-margin-top: 96px; }
 .conference-card strong { display: block; margin-bottom: 8px; font-size: 25px; }
 .conference-card span { display: block; min-height: 52px; color: var(--color-heading-wv); font-weight: 600; line-height: 1.5; }
 .conference-card small { display: block; margin-top: 15px; color: var(--color-muted); font-size: 14px; }
-.academic-contact { background: #171b24; }
+.academic-contact { background: var(--color-heading-wv); }
 body.white-version .academic-contact h2, body.white-version .academic-contact p { color: #fff; }
 .academic-contact .academic-kicker { color: var(--color-white); }
 .academic-contact-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 60px; align-items: start; }
@@ -621,7 +627,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid #f6bd35; outline-offs
   white-space: normal;
 }
 
-/* Headings and navigation use navy; current selections use bronze. */
+/* Navy typography with gold indicators and readable brown accent text. */
 #home .slide .content .inner .title span,
 body.white-version .section-title h2.title,
 body.white-version .personal-experience-inner .experience-list .resume-single-list .inner .heading .title h4 {
@@ -633,7 +639,11 @@ body.white-version :is(#onepagenav, #sideNavMobile) .primary-menu > li > a {
 }
 
 body.white-version :is(#onepagenav, #sideNavMobile) .primary-menu > li > a:is(:hover, :focus-visible, .active, [aria-current="location"]) {
-  color: var(--color-primary);
+  color: var(--color-heading-wv);
+  text-decoration: underline;
+  text-decoration-color: var(--color-primary);
+  text-decoration-thickness: 3px;
+  text-underline-offset: 8px;
 }
 
 body.white-version .personal-experience-inner .experience-list .resume-single-list .inner .heading .title span,
@@ -652,7 +662,7 @@ body.white-version .personal-experience-inner .experience-list .resume-single-li
 .rn-nav-list .nav-item .nav-link:hover,
 .rn-nav-list .nav-item .nav-link.active,
 .has-inbio-primary-color {
-  color: var(--color-primary);
+  color: var(--color-accent-text);
 }
 
 
@@ -661,13 +671,13 @@ body.white-version .personal-experience-inner .experience-list .resume-single-li
 .awards-intro { display: grid; grid-template-columns: 1fr 1.05fr; align-items: center; gap: 48px; margin-bottom: 48px; }
 .awards-intro .academic-section-heading { margin: 0; }
 .awards-summary { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 18px; margin: 28px 0; }
-.academic-section .awards-summary dt { color: var(--color-primary); font-size: 34px; line-height: 1.2; font-weight: 700; }
+.academic-section .awards-summary dt { color: var(--color-heading-wv); font-size: 34px; line-height: 1.2; font-weight: 700; }
 .academic-section .awards-summary dd { margin: 8px 0 0; color: var(--color-muted); font-size: 13px; line-height: 1.5; }
 .awards-intro .academic-btn { gap: 14px; }
 .awards-gallery { margin: 0; padding: 14px; background: #fff; border: 1px solid #eadfc5; border-radius: 20px; box-shadow: 0 12px 36px rgba(101,75,20,.07); }
 .awards-gallery img { display: block; width: 100%; height: auto; border-radius: 10px; }
 .awards-gallery figcaption { padding: 14px 4px 4px; text-align: center; color: var(--color-muted); font-size: 13px; line-height: 1.7; }
-.awards-gallery figcaption a { color: var(--color-primary); text-decoration: underline; text-underline-offset: 3px; }
+.awards-gallery figcaption a { color: var(--color-accent-text); text-decoration: underline; text-underline-offset: 3px; }
 #awards-by-year { scroll-margin-top: 110px; }
 .awards-years { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 24px; align-items: start; }
 .awards-year { padding: 26px 28px; background: #fff; border: 1px solid #e8e2d5; border-radius: 18px; }
@@ -679,7 +689,7 @@ body.white-version .personal-experience-inner .experience-list .resume-single-li
 .awards-year li:last-child { padding-bottom: 0; border-bottom: 0; }
 .award-name { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
 .award-name h4 { flex: 1 1 230px; margin: 0; color: var(--color-heading-wv); font-size: 17px; line-height: 1.5; font-weight: 600; }
-.award-badge { display: inline-block; padding: 3px 9px; border-radius: 6px; background: #fff2cd; color: var(--color-primary); font-size: 12px; font-weight: 700; white-space: nowrap; }
+.award-badge { display: inline-block; padding: 3px 9px; border-radius: 6px; background: #fff2cd; color: var(--color-accent-text); font-size: 12px; font-weight: 700; white-space: nowrap; }
 .award-badge--finalist { background: #edf0f5; color: var(--color-muted); }
 #awards .awards-year p { margin: 7px 0 0; color: var(--color-body-white); font-size: 14px; line-height: 1.65; }
 @media (max-width: 900px) {
@@ -692,3 +702,11 @@ body.white-version .personal-experience-inner .experience-list .resume-single-li
   .awards-summary { gap: 12px; }
   .academic-section .awards-summary dt { font-size: 30px; }
 }
+
+/* Comfortable gutters at intermediate desktop and mobile widths. */
+#home > .elementor-container { padding-inline: 24px; }
+@media (max-width: 600px) { #home > .elementor-container { padding-inline: 16px; } }
+
+/* Readable selected tabs and date badges on light surfaces. */
+body.white-version .rn-resume-area .rn-nav-list .nav-item .nav-link:is(.active, :hover, :focus-visible) { color: var(--color-heading-wv); box-shadow: inset 0 -3px 0 var(--color-primary); }
+body.white-version .personal-experience-inner .experience-list .resume-single-list .inner .heading .date-of-time span { color: var(--color-accent-text); }
