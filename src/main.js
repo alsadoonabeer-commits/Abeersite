@@ -228,6 +228,7 @@ const setupTestimonials = () => {
   });
 
   const show = (index, { animate = true } = {}) => {
+    if (carousel.classList.contains("show-all")) return;
     activeIndex = (index + slides.length) % slides.length;
     let activeSlide;
     slides.forEach((slide, slideIndex) => {
@@ -290,7 +291,7 @@ const setupScrollBehavior = () => {
   const backToTop = document.querySelector(".backto-top");
   const navigationLinks = [...document.querySelectorAll('.primary-menu a[href^="#"]')];
   // Use document order: the menu order need not match the section layout.
-  const sections = [...document.querySelectorAll("main section[id]")].filter(
+  const sections = [...document.querySelectorAll("main section[id], main details[id]")].filter(
     (section) => navigationLinks.some((link) => link.hash === `#${section.id}`),
   );
   let currentSection;
@@ -394,7 +395,7 @@ const setupRecommendationsToggle = () => {
   if (!section) return;
   const items = [...section.querySelectorAll(".testimonial")];
   if (items.length <= 4) return;
-  items.slice(4).forEach((item) => item.classList.add("is-collapsed"));
+
   const button = document.createElement("button");
   button.type = "button";
   button.className = "academic-btn academic-btn--primary recommendations-toggle";
@@ -402,7 +403,13 @@ const setupRecommendationsToggle = () => {
   button.setAttribute("aria-expanded", "false");
   button.addEventListener("click", () => {
     const expanded = button.getAttribute("aria-expanded") === "true";
-    items.slice(4).forEach((item) => item.classList.toggle("is-collapsed", expanded));
+    const carousel = section.querySelector(".testimonial-activation");
+    carousel.classList.toggle("show-all", !expanded);
+    items.forEach((item, index) => {
+      item.hidden = expanded && index !== 0;
+      item.setAttribute("aria-hidden", String(item.hidden));
+    });
+    if (expanded) carousel.querySelector('.slick-dots button')?.click();
     button.setAttribute("aria-expanded", String(!expanded));
     button.textContent = expanded ? "View all recommendations" : "Show fewer recommendations";
   });
@@ -435,3 +442,50 @@ const setupAwardsToggle = () => {
   });
 };
 setupAwardsToggle();
+
+
+// Open preserved detail panels before the existing smooth-scroll handler runs.
+document.addEventListener("click", (event) => {
+  const link = event.target.closest('a[href^="#"]');
+  if (!link) return;
+  const target = document.getElementById(link.getAttribute("href").slice(1));
+  if (!target) return;
+  if (target.matches("details")) target.open = true;
+  let parent = target.parentElement;
+  while (parent) {
+    if (parent.matches("details")) parent.open = true;
+    parent = parent.parentElement;
+  }
+}, true);
+
+const biographyToggle = document.getElementById("full-biography");
+biographyToggle?.addEventListener("toggle", () => {
+  biographyToggle.querySelector("summary").textContent = biographyToggle.open
+    ? "Close Full Biography ↑" : "Read Full Biography →";
+});
+document.getElementById("copy-biography")?.addEventListener("click", async () => {
+  const text = document.getElementById("official-biography").textContent.trim();
+  const status = document.getElementById("copy-status");
+  try {
+    await navigator.clipboard.writeText(text);
+    status.textContent = "Biography copied.";
+  } catch {
+    biographyToggle.open = true;
+    const range = document.createRange();
+    range.selectNodeContents(document.getElementById("official-biography"));
+    const selection = window.getSelection();
+    selection.removeAllRanges();
+    selection.addRange(range);
+    status.textContent = "Biography selected. Press Ctrl+C or Command+C to copy.";
+  }
+});
+
+// Direct links into the full résumé or research content remain usable.
+if (location.hash) {
+  const target = document.getElementById(location.hash.slice(1));
+  let node = target;
+  while (node) {
+    if (node.matches("details")) node.open = true;
+    node = node.parentElement;
+  }
+}
