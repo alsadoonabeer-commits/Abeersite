@@ -881,3 +881,48 @@ body.white-version.academic-portfolio { background: var(--portfolio-cream); colo
 }
 
 .profile-links { display:flex; flex-wrap:wrap; gap:18px; margin:18px 0; } .profile-links a { display:grid; justify-items:center; gap:7px; font-size:12px; color:var(--portfolio-navy); } .profile-links svg { background:#ffedc4; border-radius:50%; padding:9px; box-sizing:content-box; } .more-profiles summary { cursor:pointer; color:var(--color-accent-text); margin:18px 0; font-size:14px; }
+
+/* Original Panorama clipping and accessible article viewer. */
+.media-grid > .panorama-card { grid-column:1 / -1; display:grid; grid-template-columns:minmax(140px,220px) 1fr; gap:26px; align-items:center; }
+.panorama-card > img { width:100%; height:230px; object-fit:contain; border-radius:4px; }
+.panorama-copy { display:flex; flex-direction:column; gap:12px; }
+.panorama-copy p { margin:0; }
+.panorama-copy .panorama-author { color:var(--color-accent-text); font-size:13px; }
+#newspaper-viewer { width:min(1100px,96vw); max-width:96vw; height:92dvh; max-height:92dvh; margin:auto; padding:0; border:1px solid var(--portfolio-border); border-radius:12px; background:var(--portfolio-cream); color:var(--color-body); }
+#newspaper-viewer[open] { display:flex; flex-direction:column; }
+#newspaper-viewer::backdrop { background:rgba(9,36,77,.84); }
+.newspaper-toolbar { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:14px 18px; border-bottom:1px solid var(--portfolio-border); }
+.academic-portfolio .newspaper-toolbar h2 { font-size:20px; margin:0; }
+.newspaper-toolbar > div { display:flex; gap:8px; flex-shrink:0; }
+.newspaper-toolbar button { background:#F9BB2D; color:#09244D; padding:9px 12px; border:1px solid #A66B00; border-radius:6px; font:inherit; font-size:14px; cursor:pointer; }
+.newspaper-image-view { flex:1; min-height:0; overflow:auto; padding:14px; text-align:center; background:#e9e7e2; }
+.newspaper-image-view img { display:block; width:auto; max-width:100%; height:100%; object-fit:contain; margin:auto; }
+.newspaper-image-view.is-zoomed img { width:1500px; max-width:none; height:auto; margin:0 auto; }
+body.newspaper-open { overflow:hidden; }
+@media(max-width:575px) { .media-grid > .panorama-card { grid-template-columns:1fr; gap:18px; } .panorama-card > img { height:260px; } .newspaper-toolbar { align-items:flex-start; flex-direction:column; padding:12px; } .academic-portfolio .newspaper-toolbar h2 { font-size:18px; } }
+.newspaper-toolbar button { width:auto; height:auto; white-space:nowrap; line-height:1.4; }
+
+/* Approved news banner, balanced cards and six academic appointments. */
+#media .news-banner { background:linear-gradient(115deg,#fbf5e7,#fffdf8); border:1px solid var(--portfolio-border); border-radius:14px; overflow:hidden; margin-bottom:24px; }
+.news-banner-copy { padding:32px; text-align:center; }
+#media .news-banner h2 { font-size:clamp(30px,3.2vw,46px); line-height:1.15; }
+#media .news-banner h2::after { margin:16px auto; }
+.news-subtitle { font-family:Georgia,serif; font-size:22px; color:var(--portfolio-navy); line-height:1.4; }
+.news-achievements { display:grid; grid-template-columns:repeat(4,1fr); list-style:none; padding:0; margin:24px 0 0; gap:12px; }
+.news-achievements li { display:grid; justify-items:center; gap:8px; font-size:13px; line-height:1.4; border-right:1px solid var(--portfolio-border); }
+.news-achievements li:last-child { border:0; }
+.news-achievements svg { width:28px; height:28px; color:#A66B00; }
+#media .media-grid { grid-template-columns:repeat(5,minmax(0,1fr)); align-items:stretch; }
+#media .media-grid > a { display:flex; flex-direction:column; grid-column:auto; gap:14px; padding:16px; align-items:stretch; }
+#media .media-grid strong { font-family:Georgia,serif; font-size:19px; line-height:1.3; }
+#media .media-grid p { line-height:1.6; margin:0 0 16px; }
+#media .media-publisher,#media .panorama-card > img { width:100%; height:160px; flex-shrink:0; border-radius:6px; }
+#media .media-publisher { display:grid; place-items:center; padding:15px; background:#09244D; color:#fff; font-family:Georgia,serif; font-size:23px; text-align:center; }
+#media .panorama-card > img { object-fit:contain; background:#fff; }
+#media .panorama-copy { display:contents; }
+#media .text-link { margin-top:auto; align-self:flex-start; border:1px solid #A66B00; border-radius:24px; padding:8px 12px; font-size:12px; color:#09244D; text-decoration:none; }
+#experience .career-grid { grid-template-columns:repeat(3,minmax(0,1fr)); }
+@media(max-width:1100px) { #media .media-grid { grid-template-columns:repeat(3,minmax(0,1fr)); } }
+@media(max-width:767px) { #media .media-grid,#experience .career-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } .news-achievements { grid-template-columns:repeat(2,1fr); } .news-banner-copy { padding:24px 18px; } .news-subtitle { font-size:19px; } }
+@media(max-width:575px) { #media .media-grid,#experience .career-grid { grid-template-columns:1fr; } #media .media-publisher,#media .panorama-card > img { height:200px; } }
+#media .news-subtitle { font-size:22px; } @media(max-width:575px) { #media .news-subtitle { font-size:18px; } }

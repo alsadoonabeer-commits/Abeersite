@@ -489,3 +489,39 @@ if (location.hash) {
     node = node.parentElement;
   }
 }
+
+// Preserve the original clipping; enlarge it in a keyboard-accessible native dialog.
+const newspaperViewer = document.getElementById('newspaper-viewer');
+if (newspaperViewer) {
+  const newspaperImageView = newspaperViewer.querySelector('.newspaper-image-view');
+  const newspaperZoom = document.getElementById('newspaper-zoom');
+  let newspaperOpener;
+  document.querySelectorAll('[data-newspaper-open]').forEach(link => {
+    link.addEventListener('click', event => {
+      if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+      event.preventDefault();
+      newspaperOpener = link;
+      newspaperImageView.classList.remove('is-zoomed');
+      newspaperZoom.setAttribute('aria-pressed', 'false');
+      newspaperZoom.textContent = 'Zoom in';
+      newspaperViewer.showModal();
+      document.body.classList.add('newspaper-open');
+      document.getElementById('newspaper-close').focus();
+    });
+  });
+  newspaperZoom.addEventListener('click', () => {
+    const zoomed = newspaperImageView.classList.toggle('is-zoomed');
+    newspaperZoom.setAttribute('aria-pressed', String(zoomed));
+    newspaperZoom.textContent = zoomed ? 'Fit to screen' : 'Zoom in';
+  });
+  document.getElementById('newspaper-close').addEventListener('click', () => newspaperViewer.close());
+  newspaperViewer.addEventListener('click', event => {
+    if (event.target !== newspaperViewer) return;
+    const bounds = newspaperViewer.getBoundingClientRect();
+    if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) newspaperViewer.close();
+  });
+  newspaperViewer.addEventListener('close', () => {
+    document.body.classList.remove('newspaper-open');
+    newspaperOpener?.focus();
+  });
+}
