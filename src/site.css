@@ -934,3 +934,11 @@ body.newspaper-open { overflow:hidden; }
 #media .news-banner-copy { align-self:center; padding:30px 24px; }
 #media .news-banner h2 { font-size:clamp(28px,3vw,44px); }
 @media(max-width:767px) { #media .news-banner { grid-template-columns:1fr; } .news-banner-photo { min-height:0; height:310px; border-right:0; border-bottom:4px solid #F9BB2D; border-radius:0; } .news-banner-photo img { object-position:50% 28%; } }
+
+/* Display the four supplied thumbnail panels without recreating their artwork. */
+#media .media-thumbnail { position:relative; width:100%; aspect-ratio:276 / 178; overflow:hidden; border-radius:6px; flex-shrink:0; background:#fff; }
+#media .media-thumbnail img { position:absolute; width:457.608696%; max-width:none; height:111.797753%; top:-6.741573%; object-fit:fill; }
+#media .media-thumbnail-1 img { left:-2.536232%; }
+#media .media-thumbnail-2 img { left:-121.376812%; }
+#media .media-thumbnail-3 img { left:-236.594203%; }
+#media .media-thumbnail-4 img { left:-355.797101%; }
