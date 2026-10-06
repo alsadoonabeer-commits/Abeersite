@@ -490,6 +490,54 @@ if (location.hash) {
   }
 }
 
+// Browse original award photographs; no automated motion or image alteration.
+const awardThumbs = [...document.querySelectorAll('[data-award-photo]')];
+const awardViewer = document.getElementById('award-photo-viewer');
+if (awardThumbs.length && awardViewer) {
+  let awardIndex = 0;
+  let awardOpener;
+  const showAward = (index) => {
+    awardIndex = (index + awardThumbs.length) % awardThumbs.length;
+    const photo = awardThumbs[awardIndex].querySelector('img');
+    for (const id of ['award-featured-photo', 'award-lightbox-photo']) {
+      const image = document.getElementById(id);
+      image.src = photo.getAttribute('src');
+      image.alt = photo.alt;
+    }
+    for (const id of ['award-photo-open', 'award-original-link']) document.getElementById(id).href = photo.getAttribute('src');
+    for (const id of ['award-photo-caption', 'award-viewer-caption']) document.getElementById(id).textContent = `${awardIndex + 1} / ${awardThumbs.length} · ${photo.alt}`;
+    awardThumbs.forEach((button, i) => button.setAttribute('aria-pressed', String(i === awardIndex)));
+    const strip = awardThumbs[awardIndex].parentElement;
+    strip.scrollLeft = awardThumbs[awardIndex].offsetLeft - strip.offsetLeft - strip.clientWidth / 2 + awardThumbs[awardIndex].clientWidth / 2;
+  };
+  awardThumbs.forEach((button, i) => button.addEventListener('click', () => showAward(i)));
+  document.querySelectorAll('[data-award-step]').forEach(button => button.addEventListener('click', () => showAward(awardIndex + Number(button.dataset.awardStep))));
+  document.getElementById('award-photo-open').addEventListener('click', event => {
+    if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+    event.preventDefault();
+    awardOpener = event.currentTarget;
+    awardViewer.showModal();
+    document.body.classList.add('award-viewer-open');
+    document.getElementById('award-viewer-close').focus();
+  });
+  document.getElementById('award-viewer-close').addEventListener('click', () => awardViewer.close());
+  awardViewer.addEventListener('keydown', event => {
+    if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+      event.preventDefault();
+      showAward(awardIndex + (event.key === 'ArrowRight' ? 1 : -1));
+    }
+  });
+  awardViewer.addEventListener('click', event => {
+    if (event.target !== awardViewer) return;
+    const bounds = awardViewer.getBoundingClientRect();
+    if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) awardViewer.close();
+  });
+  awardViewer.addEventListener('close', () => {
+    document.body.classList.remove('award-viewer-open');
+    awardOpener?.focus();
+  });
+}
+
 // Preserve the original clipping; enlarge it in a keyboard-accessible native dialog.
 const newspaperViewer = document.getElementById('newspaper-viewer');
 if (newspaperViewer) {
