@@ -418,30 +418,7 @@ const setupRecommendationsToggle = () => {
 };
 document.addEventListener("DOMContentLoaded", setupRecommendationsToggle);
 
-const setupAwardsToggle = () => {
-  const button = document.getElementById("awards-toggle");
-  const awards = document.getElementById("awards-by-year");
-  if (!button || !awards) return;
 
-  button.addEventListener("click", () => {
-    const expanded = button.getAttribute("aria-expanded") === "true";
-    button.setAttribute("aria-expanded", String(!expanded));
-    awards.hidden = expanded;
-    awards.style.display = expanded ? "none" : "";
-    button.innerHTML = expanded
-      ? 'Explore awards by year <span aria-hidden="true">↓</span>'
-      : 'Hide awards by year <span aria-hidden="true">↑</span>';
-    if (!expanded) {
-      awards.scrollIntoView({
-        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
-          ? "instant"
-          : "smooth",
-        block: "start",
-      });
-    }
-  });
-};
-setupAwardsToggle();
 
 
 // Open preserved detail panels before the existing smooth-scroll handler runs.
@@ -572,4 +549,41 @@ if (newspaperViewer) {
     document.body.classList.remove('newspaper-open');
     newspaperOpener?.focus();
   });
+}
+
+// Accessible, single-panel awards navigation with keyboard and deep-link support.
+const awardsTabs = [...document.querySelectorAll('.awards-tabs [role="tab"]')];
+if (awardsTabs.length) {
+  const selectAwardsTab = (tab, focus = false) => {
+    const wasVideoOpen = !document.getElementById('awards-videos').hidden;
+    awardsTabs.forEach(item => {
+      const selected = item === tab;
+      item.setAttribute('aria-selected', String(selected));
+      item.tabIndex = selected ? 0 : -1;
+      document.getElementById(item.getAttribute('aria-controls')).hidden = !selected;
+    });
+    if (focus) tab.focus();
+    const video = document.querySelector('#awards-videos iframe');
+    // Stop playback when leaving Videos without loading a second player.
+    if (video && tab.getAttribute('aria-controls') !== 'awards-videos' && wasVideoOpen) video.src = video.src;
+  };
+  awardsTabs.forEach((tab, index) => {
+    tab.addEventListener('click', () => selectAwardsTab(tab));
+    tab.addEventListener('keydown', event => {
+      let next;
+      if (event.key === 'ArrowRight') next = (index + 1) % awardsTabs.length;
+      if (event.key === 'ArrowLeft') next = (index + awardsTabs.length - 1) % awardsTabs.length;
+      if (event.key === 'Home') next = 0;
+      if (event.key === 'End') next = awardsTabs.length - 1;
+      if (next !== undefined) { event.preventDefault(); selectAwardsTab(awardsTabs[next], true); }
+    });
+  });
+  const openAwardsHash = () => {
+    const target = document.getElementById(location.hash.slice(1));
+    const panel = target?.closest('.awards-tab-panel');
+    const tab = awardsTabs.find(item => item.getAttribute('aria-controls') === panel?.id);
+    if (tab) selectAwardsTab(tab);
+  };
+  openAwardsHash();
+  window.addEventListener('hashchange', openAwardsHash);
 }

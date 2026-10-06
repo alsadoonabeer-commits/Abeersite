@@ -978,3 +978,32 @@ body.award-viewer-open { overflow:hidden; }
 
 /* News card lead sentences; preserve existing card layout and spacing. */
 #media .media-grid .media-lead { display:block; color:var(--portfolio-navy); font-size:16px; font-weight:700; line-height:1.4; margin-bottom:10px; }
+
+/* Compact awards tabs reuse the original award content and authentic assets. */
+#achievements .indexing-accent { color:var(--color-accent-text,#805300); font-weight:700; }
+.awards-compact .compact-awards-heading h2 { margin:0 0 10px; }
+.awards-compact .compact-awards-heading > p { margin:0 0 20px; max-width:1000px; }
+.awards-tabs { display:flex; gap:8px; overflow-x:auto; margin-bottom:14px; padding:3px; }
+.awards-tabs [role="tab"] { flex:1 0 auto; padding:12px 18px; border:1px solid var(--portfolio-border); border-radius:8px; background:var(--portfolio-ivory); color:var(--portfolio-navy); font:600 16px Georgia,serif; cursor:pointer; }
+.awards-tabs [role="tab"][aria-selected="true"] { background:var(--portfolio-navy); color:#fff; border-color:var(--portfolio-navy); }
+.awards-tabs [role="tab"]:focus-visible { outline:3px solid #aa7919; outline-offset:2px; }
+.awards-compact .awards-tab-panel[hidden] { display:none !important; }
+.awards-overview { display:grid; grid-template-columns:0.8fr 1.2fr 1.5fr; gap:18px; align-items:stretch; }
+.award-summary-card { display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:20px; border:1px solid var(--portfolio-border); border-radius:12px; background:var(--portfolio-cream); }
+.award-summary-number { color:var(--portfolio-navy); font:700 46px/1.1 Georgia,serif; }
+.award-summary-card h3 { color:var(--portfolio-navy); font:700 23px/1.25 Georgia,serif; margin:8px 0 12px; }
+.award-summary-card p { font-size:14px; line-height:1.5; margin:0; }
+.award-summary-card .award-finalist-note { color:var(--color-accent-text,#805300); font-weight:700; margin-top:10px; }
+.awards-compact .awards-gallery { margin:0; }
+.awards-compact .awards-gallery img { height:280px; width:100%; object-fit:contain; }
+.awards-compact .awards-gallery figcaption { margin:8px 0 0; font-size:12px; }
+.awards-compact #awards-by-year { margin-top:0; }
+.awards-compact #award-moments { max-width:760px; margin:0 auto; padding:18px; }
+.awards-compact #award-featured-photo { height:300px; }
+.awards-compact .award-moments-intro { margin-bottom:12px; }
+.awards-compact #awards-videos { max-width:760px; margin:0 auto; padding:18px; }
+.awards-compact .award-video { max-width:640px; margin:14px 0; }
+.awards-compact .award-photo-caption { min-height:0; margin:8px 0; }
+@media(max-width:991px) { .awards-overview { grid-template-columns:1fr 1fr; } .awards-compact .awards-gallery { grid-column:1 / -1; } .awards-compact .awards-gallery img { height:250px; } }
+@media(max-width:575px) { .awards-tabs [role="tab"] { padding:11px 15px; font-size:14px; } .awards-overview { grid-template-columns:1fr; gap:12px; } .award-summary-card { padding:16px; } .award-summary-number { font-size:36px; } .award-summary-card h3 { font-size:21px; } .awards-compact #award-featured-photo { height:270px; } }
+.awards-compact .awards-tabs [role="tab"] { width:auto; min-width:0; }
