@@ -975,3 +975,6 @@ body.newspaper-open { overflow:hidden; }
 body.award-viewer-open { overflow:hidden; }
 @media(max-width:991px) { .award-moments-grid { grid-template-columns:1fr; } }
 @media(max-width:575px) { .award-moments-card { padding:16px; } .award-moments-card h3 { font-size:25px; } #award-featured-photo { height:300px; } #award-photo-open { padding:6px 36px; } .award-arrow { width:30px; height:38px; } .award-thumb { flex-basis:64px; width:64px; height:68px; } .award-viewer-stage { padding:0 28px; } #award-photo-viewer { padding:10px; } #award-lightbox-photo { height:65dvh; } }
+
+/* News card lead sentences; preserve existing card layout and spacing. */
+#media .media-grid .media-lead { display:block; color:var(--portfolio-navy); font-size:16px; font-weight:700; line-height:1.4; margin-bottom:10px; }
