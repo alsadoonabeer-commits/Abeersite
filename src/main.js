@@ -590,3 +590,26 @@ if (awardsTabs.length) {
   openAwardsHash();
   window.addEventListener('hashchange', openAwardsHash);
 }
+
+// Independent conference tabs: only one leadership period is visible.
+const conferenceTabs = [...document.querySelectorAll('#leadership .conference-tabs [role="tab"]')];
+const selectConferenceTab = (tab, focus = false) => {
+  conferenceTabs.forEach(item => {
+    const selected = item === tab;
+    item.setAttribute('aria-selected', String(selected));
+    item.tabIndex = selected ? 0 : -1;
+    document.getElementById(item.getAttribute('aria-controls')).hidden = !selected;
+  });
+  if (focus) tab.focus();
+};
+conferenceTabs.forEach((tab, index) => {
+  tab.addEventListener('click', () => selectConferenceTab(tab));
+  tab.addEventListener('keydown', event => {
+    let next;
+    if (event.key === 'ArrowRight') next = (index + 1) % conferenceTabs.length;
+    if (event.key === 'ArrowLeft') next = (index + conferenceTabs.length - 1) % conferenceTabs.length;
+    if (event.key === 'Home') next = 0;
+    if (event.key === 'End') next = conferenceTabs.length - 1;
+    if (next !== undefined) { event.preventDefault(); selectConferenceTab(conferenceTabs[next], true); }
+  });
+});
