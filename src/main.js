@@ -427,6 +427,9 @@ document.addEventListener("click", (event) => {
   if (!link) return;
   const target = document.getElementById(link.getAttribute("href").slice(1));
   if (!target) return;
+  if (target.id === "conference-leadership-details") {
+    document.getElementById("rb2basicPlan-4")?.click();
+  }
   if (target.matches("details")) target.open = true;
   let parent = target.parentElement;
   while (parent) {

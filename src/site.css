@@ -1007,3 +1007,34 @@ body.award-viewer-open { overflow:hidden; }
 @media(max-width:991px) { .awards-overview { grid-template-columns:1fr 1fr; } .awards-compact .awards-gallery { grid-column:1 / -1; } .awards-compact .awards-gallery img { height:250px; } }
 @media(max-width:575px) { .awards-tabs [role="tab"] { padding:11px 15px; font-size:14px; } .awards-overview { grid-template-columns:1fr; gap:12px; } .award-summary-card { padding:16px; } .award-summary-number { font-size:36px; } .award-summary-card h3 { font-size:21px; } .awards-compact #award-featured-photo { height:270px; } }
 .awards-compact .awards-tabs [role="tab"] { width:auto; min-width:0; }
+
+/* Featured and previous conference leadership share the existing visual system. */
+#leadership .conference-group { border:1px solid var(--portfolio-border); border-radius:12px; padding:20px; margin-top:18px; background:var(--portfolio-cream); }
+#leadership .conference-group > h3 { color:var(--portfolio-navy); font:700 27px/1.25 Georgia,serif; margin:0 0 8px; }
+#leadership .conference-group > p { font-size:14px; line-height:1.6; margin:0 0 16px; }
+#leadership .conference-card { display:flex; flex-direction:column; padding:18px; background:var(--portfolio-ivory); }
+#leadership .conference-brand { display:flex; align-items:center; justify-content:space-between; gap:10px; min-width:0; margin-bottom:12px; }
+#leadership .conference-brand img { width:65%; height:85px; object-fit:contain; object-position:left center; margin:0; }
+#leadership .conference-scopus { flex-shrink:0; display:inline-block; color:#805300; background:#fff0ce; border:1px solid #dec694; border-radius:6px; padding:4px 7px; font:600 11px/1.4 inherit; font-size:11px; line-height:1.4; }
+#leadership .conference-card h4 { color:var(--portfolio-navy); font:700 25px/1.25 Georgia,serif; margin:0 0 8px; }
+#leadership .conference-role { color:var(--portfolio-navy); font-weight:600; }
+#leadership .conference-card p { font-size:14px; line-height:1.6; margin:0 0 10px; }
+#leadership .conference-detail { margin-top:auto; margin-bottom:0; color:#666; }
+#leadership .conference-history-grid { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:12px; }
+#leadership .conference-history-card { display:flex; flex-direction:column; min-width:0; padding:14px; border:1px solid var(--portfolio-border); border-radius:10px; background:var(--portfolio-ivory); }
+#leadership .conference-history-card .conference-brand { flex-wrap:wrap; gap:6px; margin-bottom:10px; }
+#leadership .conference-history-card .conference-brand img { height:48px; width:100%; }
+#leadership .conference-series-name { display:flex; align-items:center; height:48px; width:100%; color:var(--portfolio-navy); font:700 23px Georgia,serif; }
+#leadership .conference-history-card h4 { color:var(--portfolio-navy); font:700 17px/1.3 Georgia,serif; margin:0 0 8px; }
+#leadership .conference-history-card p { font-size:12px; line-height:1.5; margin:0 0 10px; }
+#leadership .conference-history-card .conference-detail { margin-top:auto; margin-bottom:0; }
+#leadership .conference-more { text-align:center; margin-top:16px; }
+#conference-leadership-details { scroll-margin-top:95px; }
+@media(max-width:1100px) { #leadership .conference-history-grid { grid-template-columns:repeat(3,minmax(0,1fr)); } }
+@media(max-width:767px) { #leadership .conference-history-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } #leadership .conference-group { padding:14px; } #leadership .conference-group > h3 { font-size:23px; } }
+@media(max-width:575px) { #leadership .conference-history-grid { grid-template-columns:1fr; } #leadership .conference-history-card .conference-brand { flex-wrap:nowrap; } #leadership .conference-history-card .conference-brand img,#leadership .conference-series-name { width:65%; } #leadership .conference-history-card p { font-size:14px; } }
+#leadership .conference-card { gap:0; min-height:280px; }
+#leadership .conference-scopus { min-height:0; font-family:inherit; font-weight:600; }
+#leadership .conference-history-card .conference-brand { flex-wrap:nowrap; }
+#leadership .conference-history-card .conference-brand img,#leadership .conference-history-card .conference-series-name { width:58%; height:42px; }
+#leadership .conference-history-card .conference-series-name { font-size:17px; }
