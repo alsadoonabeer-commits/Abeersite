@@ -1047,3 +1047,22 @@ body.award-viewer-open { overflow:hidden; }
 #leadership [role="tabpanel"][hidden] { display:none !important; }
 #leadership .conference-group { margin-top:0; }
 @media(max-width:575px) { #leadership .conference-tabs [role="tab"] { padding:11px 15px; font-size:14px; } }
+
+/* Supplied profile logos are displayed unchanged on the cream card background. */
+#connect .connect-heading { text-align:center; margin-bottom:28px; }
+#connect .connect-heading p { color:var(--portfolio-navy); margin:12px 0 0; }
+#connect .connect-heading h2::after { display:none; }
+#connect .connect-heading::after { content:""; display:block; width:72px; height:3px; background:#b98b2f; margin:22px auto 0; }
+#connect .connect-profile-grid { display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:14px; grid-auto-rows:1fr; }
+#connect .connect-profile-card { display:flex; flex-direction:column; align-items:center; min-width:0; padding:20px 14px; text-align:center; border:1px solid var(--portfolio-border); border-radius:12px; background:var(--portfolio-ivory); }
+#connect .connect-logo { width:100%; height:100px; display:flex; align-items:center; justify-content:center; margin-bottom:16px; }
+#connect .connect-logo img { width:100%; max-width:180px; height:90px; object-fit:contain; background:transparent; border:0; border-radius:0; }
+#connect .connect-profile-card h3 { font:700 20px/1.3 Georgia,serif; color:var(--portfolio-navy); margin:0 0 14px; }
+#connect .connect-profile-card p { font-size:14px; line-height:1.6; margin:0 0 22px; color:var(--portfolio-navy); }
+#connect .connect-profile-card .connect-membership { font-weight:700; margin-bottom:10px; }
+#connect .connect-profile-button { display:block; width:100%; padding:10px 6px; margin-top:auto; border:1px solid #a77916; border-radius:8px; background:#9b7014; color:#fff; font-size:12px; font-weight:600; text-decoration:none; line-height:1.5; }
+#connect .connect-profile-button:hover { background:#805b0f; }
+#connect .connect-profile-button:focus-visible { outline:3px solid var(--portfolio-navy); outline-offset:3px; }
+@media(max-width:1199px) { #connect .connect-profile-grid { grid-template-columns:repeat(3,minmax(0,1fr)); } }
+@media(max-width:767px) { #connect .connect-profile-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media(max-width:479px) { #connect .connect-profile-grid { grid-template-columns:1fr; } #connect .connect-profile-card { padding:22px; } }
