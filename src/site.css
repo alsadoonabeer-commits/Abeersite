@@ -1066,3 +1066,15 @@ body.award-viewer-open { overflow:hidden; }
 @media(max-width:1199px) { #connect .connect-profile-grid { grid-template-columns:repeat(3,minmax(0,1fr)); } }
 @media(max-width:767px) { #connect .connect-profile-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
 @media(max-width:479px) { #connect .connect-profile-grid { grid-template-columns:1fr; } #connect .connect-profile-card { padding:22px; } }
+
+/* Seven-card profile layout from the updated reference. */
+#connect .connect-profile-grid { grid-template-columns:repeat(7,minmax(0,1fr)); gap:12px; }
+#connect .connect-profile-card { padding:20px 12px; }
+#connect .connect-membership-card > h3 { margin-bottom:4px; }
+#connect .connect-membership-card .connect-logo { margin-bottom:12px; height:76px; }
+#connect .connect-membership-card .connect-logo img { height:70px; }
+#connect .connect-membership-card .connect-membership { font:700 20px/1.3 Georgia,serif; margin-bottom:14px; }
+@media(min-width:1400px) { #connect .portfolio-container { max-width:1480px; width:calc(100% - 64px); } }
+@media(max-width:1399px) { #connect .connect-profile-grid { grid-template-columns:repeat(4,minmax(0,1fr)); } }
+@media(max-width:991px) { #connect .connect-profile-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media(max-width:479px) { #connect .connect-profile-grid { grid-template-columns:1fr; } }
